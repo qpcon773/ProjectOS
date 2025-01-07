@@ -1,0 +1,36 @@
+// RWD
+@mixin rwd1679 {
+  @media screen and (max-width: 1679px) {
+    @content;
+  }
+}
+
+@mixin rwd1439 {
+  @media screen and (max-width: 1439px) {
+    @content;
+  }
+}
+
+@mixin rwd1279 {
+  @media screen and (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin rwd1024 {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin rwd767 {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin rwd576 {
+  @media screen and (max-width: 576px) {
+    @content;
+  }
+}
