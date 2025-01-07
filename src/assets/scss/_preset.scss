@@ -1,3 +1,12 @@
+// Color
+$main: #173D7A;
+$mainLight: #4C84DD;
+
+// transition
+$tc: color 0.3s ease;
+$to: opacity 0.3s ease;
+$tt: top 0.3s ease;
+
 // RWD
 @mixin rwd1679 {
   @media screen and (max-width: 1679px) {

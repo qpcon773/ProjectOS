@@ -1,10 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterView, useRoute } from "vue-router";
-// import NavComponent from "@/components/NavComponent.vue";
+import NavComponent from "@/components/NavComponent.vue";
 </script>
 
 <template>
+  <NavComponent></NavComponent>
   <RouterView />
 </template>
 

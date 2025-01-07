@@ -1,0 +1,54 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(#000, 0.25);
+
+  .logo {
+    display: inline-flex;
+
+    img {
+      width: 150px;
+
+      @include rwd1024 {
+        width: 50px;
+      }
+    }
+  }
+
+  .navList {
+    display: flex;
+    gap: 0 16px;
+
+    @include rwd1024 {
+      display: none;
+    }
+
+    li {
+      a {
+        color: $main;
+        font-size: 1.125rem;
+        font-weight: bold;
+        transition: $tc;
+
+        &:hover {
+          color: $mainLight;
+        }
+      }
+    }
+  }
+
+  .hamBtn {
+    display: none;
+
+    @include rwd1024 {
+      width: 24px;
+      aspect-ratio: 1/1;
+    }
+
+    &.focus {
+    }
+  }
+}

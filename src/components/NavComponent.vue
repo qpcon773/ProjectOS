@@ -1,0 +1,50 @@
+<script setup>
+import { ref, onMounted } from "vue";
+
+const navData = ref([
+  {
+    text: "關於我們",
+    path: "",
+  },
+  {
+    text: "最新消息",
+    path: "",
+  },
+  {
+    text: "海洋生態",
+    path: "",
+  },
+  {
+    text: "汙染影響",
+    path: "",
+  },
+  {
+    text: "行動計畫",
+    path: "",
+  },
+  {
+    text: "聯絡我們",
+    path: "",
+  },
+]);
+
+const rwdSwitch = ref(false)
+</script>
+
+<template>
+  <nav>
+    <a href="javascript:;" class="logo"
+      ><img src="@/assets/images/logo.svg" alt=""
+    /></a>
+    <a href="javascript:;" class="hamBtn" :class="{focus: rwdSwitch}" @click="rwdSwitch = !rwdSwitch"></a>
+    <ul class="navList">
+      <template v-for="(data, id) in navData" :key="id">
+        <li>
+          <a href="javascript:;">{{ data.text }}</a>
+        </li>
+      </template>
+    </ul>
+  </nav>
+</template>
+
+<style lang="scss" src="@/assets/scss/views/components/nav.scss" scoped></style>
