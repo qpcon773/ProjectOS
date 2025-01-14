@@ -5,7 +5,10 @@ $mainLight: #4C84DD;
 // transition
 $tc: color 0.3s ease;
 $to: opacity 0.3s ease;
+$to5: opacity 0.5s ease;
 $tt: top 0.3s ease;
+$ttf: transform 0.3s ease;
+$ttf5: transform 0.5s ease;
 
 // RWD
 @mixin rwd1679 {
