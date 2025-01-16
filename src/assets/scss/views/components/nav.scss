@@ -6,11 +6,15 @@ nav {
   background: #fff;
   box-shadow: 0 0 6px rgba(#000, 0.25);
 
+  @include rwd1024{
+    padding: 16px 28px;
+  }
+
   &.focus{
     .hamBtn{
       b {
         &:nth-child(1) {
-          transform: rotate(45deg);
+          transform: translate(-50%,-50%) rotate(45deg);
           top: 50%;
           left: 50%;
         }
@@ -21,7 +25,7 @@ nav {
 
         &:nth-child(3) {
           width: 100%;
-          transform: rotate(-45deg);
+          transform: translate(-50%,-50%) rotate(-45deg);
           top: 50%;
           left: 50%;
         }
@@ -39,10 +43,10 @@ nav {
     display: inline-flex;
 
     img {
-      width: 150px;
+      width: 200px;
 
       @include rwd1024 {
-        width: 50px;
+        width: 180px;
       }
     }
   }
@@ -55,11 +59,12 @@ nav {
       position: fixed;
       width: 100vw;
       height: calc(100dvh - 70px);
-      top: 70px;
+      top: 64px;
       left: 0;
       flex-direction: column;
       align-items: center;
-      background: $mainLight;
+      background: url("@/assets/images/bg/bg_05.jpg") no-repeat;
+      background-size: cover;
       gap: 16px 0;
       padding: 24px 0;
       opacity: 0;
@@ -67,10 +72,7 @@ nav {
       transform: scaleY(0);
       transform-origin: top;
       transition: $ttf5, $to5;
-    }
-
-    &.focus{
-
+      z-index: 99;
     }
 
     li {
@@ -81,7 +83,7 @@ nav {
         transition: $tc;
 
         @include rwd1024{
-          color: #fff;
+          font-size: 1.25rem;
         }
 
         &:hover {
@@ -102,7 +104,7 @@ nav {
     }
 
     b {
-      background: #000;
+      background: $main;
       border-radius: 4px;
       position: absolute;
       height: 2px;

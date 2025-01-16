@@ -11,15 +11,15 @@ const navData = ref([
     path: "",
   },
   {
-    text: "海洋生態",
-    path: "",
-  },
-  {
     text: "汙染影響",
     path: "",
   },
   {
     text: "行動計畫",
+    path: "",
+  },
+  {
+    text: "捐愛海洋",
     path: "",
   },
   {

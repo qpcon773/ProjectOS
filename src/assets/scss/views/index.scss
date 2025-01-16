@@ -1,11 +1,120 @@
 main {
-  .eventArea {
-    background: tan;
+  .mainBlock {
     width: 100vw;
-    height: 100vh;
-    padding: 24px 16px;
+    min-height: 100vh;
+    padding: 32px 16px;
+  }
 
-    .eventListBox {
+  .newsArea {
+    background: url("@/assets/images/bg/bg_01.jpg") no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+
+    .imgBox {
+      width: 400px;
+      padding: 8px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      z-index: 1;
+
+      &.item_01 {
+        top: 80px;
+        left: 16px;
+      }
+
+      &.item_02 {
+        top: 24px;
+        right: 32px;
+      }
+
+      &.item_03 {
+        bottom: 24px;
+        left: 120px;
+      }
+
+      &.item_04 {
+        bottom: 80px;
+        right: 120px;
+      }
+    }
+
+    .newsBox {
+      background: #fff;
+      width: 1000px;
+      border-radius: 24px;
+      padding: 40px 100px 60px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+
+      .boxTitle{
+        font-size: 2rem;
+        text-align: center;
+        color: $main;
+        font-weight: 500;
+      }
+
+      .newsList {
+        margin: 24px auto 0;
+        width: 100%;
+
+        li {
+          border-bottom: 1px solid rgba(#000,0.25);
+          padding-bottom: 8px;
+          margin-bottom: 8px;
+
+          &:last-of-type{
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border: none;
+          }
+          a {
+            display: flex;
+
+            .date{
+              flex-shrink: 0;
+            }
+
+            .title{
+              margin-left: 32px;
+              width: 100%;
+              display: flex;
+              align-items: center;
+
+              &::after{
+                content: "";
+                display: flex;
+                width: 24px;
+                aspect-ratio: 1/1;
+                background: #000;
+                margin: 0 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .polluteArea {
+    background: url("@/assets/images/bg/bg_02.jpg") no-repeat;
+    background-size: cover;
+  }
+  .actionArea {
+    background: url("@/assets/images/bg/bg_03.jpg") no-repeat;
+    background-size: cover;
+  }
+
+  .shopArea {
+    background: url("@/assets/images/bg/bg_04.jpg") no-repeat;
+    background-size: cover;
+
+    .shopListBox {
       display: flex;
       gap: 0 16px;
 
