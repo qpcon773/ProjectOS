@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import UseSvg from "@/components/UseSvg.vue";
+</script>
 
 <template>
   <main>
@@ -25,6 +27,10 @@
                 <p class="title">
                   標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題
                 </p>
+                <div class="iconBox">
+                  <UseSvg name="fish" />
+                  <UseSvg name="fish" />
+                </div>
               </a>
             </li>
           </template>

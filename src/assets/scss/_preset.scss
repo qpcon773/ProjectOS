@@ -1,6 +1,11 @@
-// Color
-$main: #173D7A;
-$mainLight: #4C84DD;
+// font
+$f18: clamp(9.6px, 0.9375vw, 18px);
+$f20: clamp(10.66px, 1.0416vw, 20px);
+$f32: clamp(17.06px, 1.6666vw, 32px);
+
+// color
+$main: #173d7a;
+$mainLight: #4c84dd;
 
 // transition
 $tc: color 0.3s ease;
@@ -9,6 +14,7 @@ $to5: opacity 0.5s ease;
 $tt: top 0.3s ease;
 $ttf: transform 0.3s ease;
 $ttf5: transform 0.5s ease;
+$tf: fill 0.5s ease;
 
 // RWD
 @mixin rwd1679 {

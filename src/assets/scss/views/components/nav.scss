@@ -1,20 +1,28 @@
+@use "sass:list";
+
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 40px;
+  padding: 0 clamp(21.33px, 2.0833vw, 40px);
   background: #fff;
   box-shadow: 0 0 6px rgba(#000, 0.25);
+  height: clamp(48px, 4.6875vw, 90px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
 
-  @include rwd1024{
+  @include rwd1024 {
     padding: 16px 28px;
   }
 
-  &.focus{
-    .hamBtn{
+  &.focus {
+    .hamBtn {
       b {
         &:nth-child(1) {
-          transform: translate(-50%,-50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
           top: 50%;
           left: 50%;
         }
@@ -25,14 +33,14 @@ nav {
 
         &:nth-child(3) {
           width: 100%;
-          transform: translate(-50%,-50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
           top: 50%;
           left: 50%;
         }
       }
     }
 
-    .navList{
+    .navList {
       opacity: 1;
       pointer-events: all;
       transform: scaleX(1);
@@ -43,7 +51,7 @@ nav {
     display: inline-flex;
 
     img {
-      width: 200px;
+      width: clamp(106.66px, 10.4166vw, 200px);
 
       @include rwd1024 {
         width: 180px;
@@ -53,7 +61,7 @@ nav {
 
   .navList {
     display: flex;
-    gap: 0 16px;
+    gap: 0 clamp(8.53px, 0.8333vw, 16px);
 
     @include rwd1024 {
       position: fixed;
@@ -76,18 +84,41 @@ nav {
     }
 
     li {
+      $colorList: (red, orange, yellow, green, blue, purple);
+
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          a {
+            svg {
+              * {
+                fill: list.nth($colorList, $i);
+              }
+            }
+          }
+        }
+      }
+
       a {
         color: $main;
-        font-size: 1.125rem;
+        font-size: $f18;
         font-weight: bold;
         transition: $tc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(2.13px, 0.2083vw, 4px) 0;
 
-        @include rwd1024{
-          font-size: 1.25rem;
+        @include rwd1024 {
+          font-size: $f20;
         }
 
         &:hover {
           color: $mainLight;
+        }
+
+        svg {
+          height: clamp(12.8px, 1.25vw, 24px);
+          width: auto;
         }
       }
     }

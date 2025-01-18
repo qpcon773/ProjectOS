@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import UseSvg from "@/components/UseSvg.vue";
 
 const navData = ref([
   {
@@ -44,7 +45,10 @@ const rwdSwitch = ref(false)
     <ul class="navList">
       <template v-for="(data, id) in navData" :key="id">
         <li>
-          <a href="javascript:;">{{ data.text }}</a>
+          <a href="javascript:;">
+            <UseSvg :name="`nav_0${id + 1}`" />
+            {{ data.text }}
+          </a>
         </li>
       </template>
     </ul>
