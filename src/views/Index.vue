@@ -1,5 +1,17 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import UseSvg from "@/components/UseSvg.vue";
+
+const polluteImg = ref([
+  new URL("@/assets/images/index/pollute_01.jpg", import.meta.url).href,
+  new URL("@/assets/images/index/pollute_02.jpg", import.meta.url).href,
+  new URL("@/assets/images/index/pollute_03.jpg", import.meta.url).href,
+  new URL("@/assets/images/index/pollute_04.jpg", import.meta.url).href,
+  new URL("@/assets/images/index/pollute_05.jpg", import.meta.url).href,
+]);
+
+onMounted(() => {
+});
 </script>
 
 <template>
@@ -37,7 +49,21 @@ import UseSvg from "@/components/UseSvg.vue";
         </ul>
       </div>
     </section>
-    <section class="polluteArea mainBlock"></section>
+
+    <section class="polluteArea mainBlock">
+      <template v-for="(data, id) in polluteImg" :key="id">
+        <div class="imgBox">
+          <img :src="data" alt="" />
+        </div>
+      </template>
+
+      <ul class="pollutePhotoList">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+
     <section class="actionArea mainBlock"></section>
 
     <section class="shopArea mainBlock">

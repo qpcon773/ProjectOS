@@ -84,7 +84,7 @@ nav {
     }
 
     li {
-      $colorList: (red, orange, yellow, green, blue, purple);
+      $colorList: (red, pink, orange, green, blue, purple);
 
       @for $i from 1 through 6 {
         &:nth-child(#{$i}) {
