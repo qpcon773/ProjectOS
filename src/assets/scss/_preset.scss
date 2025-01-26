@@ -15,6 +15,7 @@ $tt: top 0.3s ease;
 $ttf: transform 0.3s ease;
 $ttf5: transform 0.5s ease;
 $tf: fill 0.5s ease;
+$tb: background 0.3s ease;
 
 // RWD
 @mixin rwd1679 {
@@ -50,5 +51,77 @@ $tf: fill 0.5s ease;
 @mixin rwd576 {
   @media screen and (max-width: 576px) {
     @content;
+  }
+}
+
+@keyframes slick {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes eventHoverIn {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(-25%);
+  }
+}
+
+@keyframes eventHoverOut {
+  from {
+    transform: translateY(-25%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fishIn {
+  from {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes fishOut {
+  from {
+    transform: translate(0%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: translate(100%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes photoChange {
+  0% {
+    background: url("@/assets/images/index/pollute_01.jpg") no-repeat;
+    background-size: cover;
+  }
+  25% {
+    background: url("@/assets/images/index/pollute_02.jpg") no-repeat;
+    background-size: cover;
+  }
+  50% {
+    background: url("@/assets/images/index/pollute_03.jpg") no-repeat;
+    background-size: cover;
+  }
+  75% {
+    background: url("@/assets/images/index/pollute_04.jpg") no-repeat;
+    background-size: cover;
+  }
+  100% {
+    background: url("@/assets/images/index/pollute_01.jpg") no-repeat;
+    background-size: cover;
   }
 }
