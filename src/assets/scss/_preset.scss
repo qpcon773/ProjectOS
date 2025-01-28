@@ -125,3 +125,32 @@ $tb: background 0.3s ease;
     background-size: cover;
   }
 }
+
+@mixin fly($originTransform: 0%) {
+  @keyframes fly#{$originTransform} {
+    from {
+      transform: translateX(#{$originTransform}) translateY(0%);
+    }
+    to {
+      transform: translateX(#{$originTransform}) translateY(5%);
+    }
+  }
+}
+
+@keyframes fly {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(5%);
+  }
+}
+
+@keyframes flyX-50 {
+  from {
+    transform: translateX(-50%) translateY(0%);
+  }
+  to {
+    transform: translateX(-50%) translateY(5%);
+  }
+}

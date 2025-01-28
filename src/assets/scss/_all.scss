@@ -10,15 +10,15 @@ body {
 .fishBox {
   display: flex;
   flex-shrink: 0;
-  width: clamp(8.53px, 0.8333vw, 16px);
+  width: clamp(9.6px,0.9375vw,18px);
   aspect-ratio: 1/1;
   overflow: hidden;
   position: relative;
-  margin: 0 clamp(8.53px, 0.8333vw, 16px);
+  margin: 0 clamp(9.6px,0.9375vw,18px);
 
   svg {
-    width: clamp(8.53px, 0.8333vw, 16px);
-    height: clamp(8.53px, 0.8333vw, 16px);
+    width: clamp(9.6px,0.9375vw,18px);
+    height: clamp(9.6px,0.9375vw,18px);
     flex-shrink: 0;
     flex-grow: 1;
     position: absolute;
@@ -41,14 +41,16 @@ body {
 }
 
 .btnBox {
+  display: flex;
+
   .btn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: clamp(106.66px, 10.4166vw, 200px);
-    aspect-ratio: 380/80;
+    aspect-ratio: 380/100;
     background: #fff;
-    border-radius: clamp(12.8px, 1.25vw, 24px);
+    border-radius: clamp(19.2px,1.875vw,36px);
     position: relative;
     overflow: hidden;
     gap: 0 clamp(8.53px,0.8333vw,16px);
@@ -82,10 +84,10 @@ body {
     &::before {
       content: "";
       position: absolute;
-      top: clamp(-8.53px, -0.8333vw, -16px);
-      left: clamp(-8.53px, -0.8333vw, -16px);
-      width: calc(100% + clamp(17.06px, 1.6666vw, 32px));
-      height: calc(100% + clamp(17.06px, 1.6666vw, 32px));
+      top: clamp(-12.8px,-1.25vw,-24px);
+      left: clamp(-12.8px,-1.25vw,-24px);
+      width: calc(100% + clamp(25.6px,2.5vw,48px));
+      height: calc(100% + clamp(25.6px,2.5vw,48px));
       background: $main;
       z-index: 0;
       border-radius: 40%;
@@ -93,12 +95,17 @@ body {
       transition: $ttf;
     }
 
+    &.size-l{
+      width: clamp(160px,15.625vw,300px);
+    }
+
     p {
-      font-size: $f18;
+      font-size: $f20;
       color: $main;
       position: relative;
       z-index: 1;
       transition: $tc;
+      font-weight: 500;
     }
 
     .fishBox{
