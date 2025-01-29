@@ -23,10 +23,6 @@ const navData = ref([
     text: "捐愛海洋",
     path: "",
   },
-  {
-    text: "聯絡我們",
-    path: "",
-  },
 ]);
 
 const rwdSwitch = ref(false)

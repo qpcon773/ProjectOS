@@ -47,6 +47,27 @@ const actionData = ref([
   },
 ]);
 
+const shopData = ref([
+  {
+    title: "漂流木桌子",
+    text: "大自然賦予的獨特紋理，每一張都是無法複製的藝術品。結合職人手工打造，展現原始樸實的魅力，為您的空間增添溫潤自然的氛圍。",
+    imgUrl: "",
+    id: 0,
+  },
+  {
+    title: "漂流木椅子",
+    text: "每張椅子都承載著海洋的故事，經過細緻打磨，保留原木質感與溫潤手感。獨特設計兼具美感與舒適度，讓您坐下的每一刻都與大自然連結。",
+    imgUrl: "",
+    id: 1,
+  },
+  {
+    title: "漂流木套組",
+    text: "桌椅完美搭配，展現漂流木的天然韻味，為空間帶來純粹自然感。手工製作，每組獨一無二，讓您的居家或工作環境更具溫度與個性。",
+    imgUrl: "",
+    id: 2,
+  },
+]);
+
 onMounted(() => {});
 
 const onSwiper = (swiper) => {
@@ -131,8 +152,7 @@ const swiperIndex = ref(0);
           <a href="javascript:;" @click="slideEvent(0)">春季活動</a>
         </li>
         <li :class="{ focus: swiperIndex === 1 }">
-          <a href="javascript:;" @click="slideEvent(1)">夏季活動
-          </a>
+          <a href="javascript:;" @click="slideEvent(1)">夏季活動 </a>
         </li>
         <li :class="{ focus: swiperIndex === 2 }">
           <a href="javascript:;" @click="slideEvent(2)">秋季活動</a>
@@ -176,32 +196,37 @@ const swiperIndex = ref(0);
     </section>
 
     <section class="shopArea mainBlock">
+      <p class="title">海岸拾光，重塑新生</p>
+      <p class="text">
+        我們從海岸撿拾合法可再生利用的素材，如漂流木、貝殼、廢棄漁網等，手工製作成獨特的工藝品與家具，賦予它們全新生命。您的每一次購買，都是對環境的支持，所有收益將全額捐贈給海洋保育單位，共同守護海洋生態。
+      </p>
+
       <div class="shopListBox">
         <ul>
-          <template v-for="(data, id) in 3" :key="id">
+          <template v-for="(data, id) in shopData" :key="id">
             <li>
               <a href="javascript:;">
                 <div class="imgBox">
                   <img src="https://picsum.photos/300" alt="" />
                 </div>
                 <div class="infoBox">
-                  <p>標題標題標題標題標題標題{{ data }}</p>
-                  <span>文字文字文字文字文字文字文字文字</span>
+                  <p>{{ data.title }}</p>
+                  <span>{{ data.text }}</span>
                 </div>
               </a>
             </li>
           </template>
         </ul>
         <ul>
-          <template v-for="(data, id) in 3" :key="id">
+          <template v-for="(data, id) in shopData" :key="id">
             <li>
               <a href="javascript:;">
                 <div class="imgBox">
                   <img src="https://picsum.photos/300" alt="" />
                 </div>
                 <div class="infoBox">
-                  <p>標題標題標題標題標題標題</p>
-                  <span>文字文字文字文字文字文字文字文字</span>
+                  <p>{{ data.title }}</p>
+                  <span>{{ data.text }}</span>
                 </div>
               </a>
             </li>
@@ -209,7 +234,7 @@ const swiperIndex = ref(0);
         </ul>
       </div>
       <div class="btnBox">
-        <a href="javascript:;" class="btn">
+        <a href="javascript:;" class="btn size-l">
           <p>查看更多</p>
 
           <div class="fishBox">

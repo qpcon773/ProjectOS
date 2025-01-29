@@ -84,9 +84,9 @@ nav {
     }
 
     li {
-      $colorList: (red, pink, orange, green, blue, purple);
+      $colorList: (red, pink, orange, green, blue);
 
-      @for $i from 1 through 6 {
+      @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
           a {
             svg {
