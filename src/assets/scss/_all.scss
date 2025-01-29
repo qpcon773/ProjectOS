@@ -7,7 +7,7 @@ body {
   overflow-x: hidden;
 
   @include rwd1024{
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 }
 
@@ -21,8 +21,8 @@ body {
   margin: 0 clamp(9.6px,0.9375vw,18px);
 
   @include rwd1024{
-    width: 14px;
-    margin: 0 14px;
+    width: 16px;
+    margin: 0 16px;
   }
 
   svg {
@@ -36,8 +36,8 @@ body {
     transform: translate(-100%, -50%);
 
     @include rwd1024{
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
     }
 
     &:nth-child(1) {
@@ -73,6 +73,7 @@ body {
       width: 200px;
       border-radius: 36px;
       gap: 0 16px;
+      aspect-ratio: 380/ 80;
     }
 
     &:hover {
@@ -132,7 +133,7 @@ body {
       font-weight: 500;
 
       @include rwd1024{
-        font-size: 1rem;
+        font-size: 1.25rem;
       }
     }
 
