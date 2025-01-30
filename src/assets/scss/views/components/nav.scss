@@ -66,15 +66,15 @@ nav {
     @include rwd1024 {
       position: fixed;
       width: 100vw;
-      height: calc(100dvh - 70px);
-      top: 64px;
+      height: calc(100dvh - 48px);
+      top: 48px;
       left: 0;
       flex-direction: column;
       align-items: center;
       background: url("@/assets/images/bg/bg_05.jpg") no-repeat;
       background-size: cover;
-      gap: 16px 0;
-      padding: 24px 0;
+      gap: 32px 0;
+      padding: 40px 24px;
       opacity: 0;
       pointer-events: none;
       transform: scaleY(0);
@@ -109,7 +109,8 @@ nav {
         gap: clamp(2.13px, 0.2083vw, 4px) 0;
 
         @include rwd1024 {
-          font-size: $f20;
+          font-size: 1.5rem;
+          gap: 8px 0;
         }
 
         &:hover {
@@ -119,6 +120,10 @@ nav {
         svg {
           height: clamp(12.8px, 1.25vw, 24px);
           width: auto;
+
+          @include rwd1024 {
+            height: 24px;
+          }
         }
       }
     }
