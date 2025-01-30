@@ -139,12 +139,6 @@ main {
             }
           }
 
-          &:last-of-type {
-            padding-bottom: 0;
-            margin-bottom: 0;
-            border: none;
-          }
-
           a {
             display: flex;
 
@@ -181,6 +175,10 @@ main {
             }
           }
         }
+      }
+
+      .remind{
+        text-align: right;
       }
     }
   }

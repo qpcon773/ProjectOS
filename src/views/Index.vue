@@ -7,8 +7,121 @@ import "swiper/css";
 import UseSvg from "@/components/UseSvg.vue";
 import LightBox from "@/components/LightBox.vue";
 
-const url = "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY="
+const url =
+  "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY=";
 
+const newsData = ref([
+  {
+    case_no: "2506",
+    organ: "地方單位\\臺東縣政府\\環境保護局",
+    case_name: "長濱港區旗魚CT0-8136漁船沈沒",
+    hap_datetime: "2024-12-16 11:20",
+    Site_discription: "長濱港區內",
+    log: "121.457222222222",
+    lat: "23.3130555555556",
+    CaseLevel: "1",
+    end_datetime: "2024-12-18 10:41",
+  },
+  {
+    case_no: "2507",
+    organ: "海洋委員會\\海洋保育署",
+    case_name: "高雄得盛造船廠前方水域疑似有油污染",
+    hap_datetime: "2024-12-16 08:51",
+    Site_discription: "得盛造船廠前方水域",
+    log: "120.281858333333",
+    lat: "22.5971083333333",
+    CaseLevel: "1",
+    end_datetime: "2024-12-27 12:39",
+  },
+  {
+    case_no: "2508",
+    organ: "地方單位\\臺南市政府\\環境保護局",
+    case_name: "安平魚市場旁油污洩漏",
+    hap_datetime: "2024-12-25 15:17",
+    Site_discription: "安平漁港",
+    log: "120.156666666667",
+    lat: "22.9952777777778",
+    CaseLevel: "1",
+    end_datetime: "",
+  },
+  {
+    case_no: "2510",
+    organ: "地方單位\\桃園市政府\\環境保護局",
+    case_name: "永安漁港港內不明油污事件",
+    hap_datetime: "2024-12-24 11:00",
+    Site_discription: "",
+    log: "121.014166666667",
+    lat: "24.9883333333333",
+    CaseLevel: "1",
+    end_datetime: "2024-12-27 08:57",
+  },
+  {
+    case_no: "2511",
+    organ: "地方單位\\高雄市政府\\海洋局",
+    case_name: "停靠興達漁港之新裕發CT4-2050）漁船失火案",
+    hap_datetime: "2024-12-27 11:53",
+    Site_discription: "",
+    log: "120.195833333333",
+    lat: "22.8694444444444",
+    CaseLevel: "1",
+    end_datetime: "2025-01-03 15:46",
+  },
+  {
+    case_no: "2514",
+    organ: "地方單位\\澎湖縣政府\\環境保護局",
+    case_name: "外垵漁港不明油污",
+    hap_datetime: "2024-12-27 16:30",
+    Site_discription: "外垵自助洗衣店前方海域兩處",
+    log: "119.479166666667",
+    lat: "23.5636111111111",
+    CaseLevel: "1",
+    end_datetime: "2024-12-28 21:25",
+  },
+  {
+    case_no: "2515",
+    organ: "地方單位\\新竹市政府\\環境保護局",
+    case_name: "瑞成號漁船翻覆事件",
+    hap_datetime: "2024-12-30 11:26",
+    Site_discription: "",
+    log: "120.920833333333",
+    lat: "24.8458333333333",
+    CaseLevel: "1",
+    end_datetime: "",
+  },
+  {
+    case_no: "2516",
+    organ: "地方單位\\澎湖縣政府\\環境保護局",
+    case_name: "外垵漁港不明油污",
+    hap_datetime: "2024-12-31 14:00",
+    Site_discription: "外垵自助洗衣店右前方",
+    log: "119.478888888889",
+    lat: "23.5630555555556",
+    CaseLevel: "1",
+    end_datetime: "2025-01-02 15:47",
+  },
+  {
+    case_no: "2517",
+    organ: "地方單位\\桃園市政府\\環境保護局",
+    case_name: "豬鼻子海灘之新北市煙火施放工作平台擱淺",
+    hap_datetime: "2025-01-02 14:00",
+    Site_discription: "",
+    log: "121.226666666667",
+    lat: "25.1111111111111",
+    CaseLevel: "1",
+    end_datetime: "2025-01-06 09:18",
+  },
+  {
+    case_no: "2518",
+    organ: "海洋委員會\\海洋保育署",
+    case_name: "馬紹爾籍「潘諾亞PANORIA」貨輪機艙失火案",
+    hap_datetime: "2025-01-04 17:13",
+    Site_discription: "鵝鑾鼻西南方23浬",
+    log: "120.4895",
+    lat: "21.7469472222222",
+    CaseLevel: "1",
+    end_datetime: "",
+  },
+]);
 const polluteImg = ref([
   new URL("@/assets/images/index/pollute_01.jpg", import.meta.url).href,
   new URL("@/assets/images/index/pollute_02.jpg", import.meta.url).href,
@@ -16,7 +129,6 @@ const polluteImg = ref([
   new URL("@/assets/images/index/pollute_04.jpg", import.meta.url).href,
   new URL("@/assets/images/index/pollute_05.jpg", import.meta.url).href,
 ]);
-
 const actionData = ref([
   {
     date: "4/15",
@@ -47,7 +159,6 @@ const actionData = ref([
       .href,
   },
 ]);
-
 const shopData = ref([
   {
     title: "漂流木桌子",
@@ -70,11 +181,12 @@ const shopData = ref([
 ]);
 
 const swiperItem = ref();
-const swiperIndex = ref(0);
-const lightSwitch = ref(true);
-const lightType = ref(1);
+const swiperIndex = ref(0); // 0 => 最新消息; 1 => 行動計畫; 2 => 捐愛海洋;
+const lightSwitch = ref(false);
+const lightType = ref(0);
+const previewDataIndex = ref(0);
 const formData = ref({
-  event: 999,
+  event: null,
   name: "",
   mail: "",
   phone: "",
@@ -93,6 +205,29 @@ const slideEvent = async (e) => {
 
 const slideChangeEvent = async (e) => {
   swiperIndex.value = e.realIndex;
+};
+
+const dateFormat = (e) => {
+  return e.split(" ")[0];
+};
+
+const lightBoxEvent = (situation, index) => {
+  console.log(situation, index);
+  lightType.value = situation;
+  previewDataIndex.value = index;
+
+  if (situation === 0) {
+  } else if (situation === 1) {
+    formData.value = {
+      event: index,
+      name: "",
+      mail: "",
+      phone: "",
+    };
+  } else if (situation === 2) {
+  }
+
+  lightSwitch.value = true;
 };
 
 const judgeForm = () => {
@@ -119,18 +254,55 @@ const judgeForm = () => {
     <LightBox :focus="lightSwitch" @closeEvent="(e) => (lightSwitch = false)">
       <template #content>
         <template v-if="lightType === 0">
-          <div class="lightNewsBox"></div>
+          <div class="lightNewsBox">
+            <p class="title">海洋污染事件</p>
+            <ul>
+              <li><b>機關：</b> {{ newsData[previewDataIndex]?.organ }}</li>
+              <li>
+                <b>案件名稱：</b> {{ newsData[previewDataIndex]?.case_name }}
+              </li>
+              <li>
+                <b>發生時間：</b> {{ newsData[previewDataIndex]?.hap_datetime }}
+              </li>
+              <li>
+                <b>結束時間：</b> {{ newsData[previewDataIndex]?.end_datetime }}
+              </li>
+              <li>
+                <b>案件等級：</b> {{ newsData[previewDataIndex]?.CaseLevel }}
+              </li>
+              <li>
+                <b>地點描述：</b>
+                {{ newsData[previewDataIndex]?.Site_discription }}
+              </li>
+              <li><b>經度：</b> {{ newsData[previewDataIndex]?.log }}</li>
+              <li><b>緯度：</b> {{ newsData[previewDataIndex]?.lat }}</li>
+            </ul>
+            <div class="btnBox">
+              <a
+                :href="`https://www.google.com/maps/search/?api=1&query=${newsData[previewDataIndex]?.lat},${newsData[previewDataIndex]?.log}`"
+                target="_blank"
+                class="btn deep"
+              >
+                <p>在Google地圖上查看</p>
+                <div class="fishBox">
+                  <UseSvg name="fish" />
+                  <UseSvg name="fish" />
+                </div>
+              </a>
+            </div>
+          </div>
         </template>
         <template v-if="lightType === 1">
           <form class="lightForm">
             <label class="selectBox" :class="{ error: judgeFormRes[0] }">
               <span>報名活動</span>
-              <select v-model="formData.event">
-                <option :value="999">請選擇</option>
-                <template v-for="(data, id) in actionData">
-                  <option :value="id + 1">{{ data.title }}</option>
-                </template>
-              </select>
+              <div class="selectContent">
+                <select v-model="formData.event">
+                  <template v-for="(data, id) in actionData">
+                    <option :value="id">{{ data.title }}</option>
+                  </template>
+                </select>
+              </div>
               <b>請輸入正確資訊</b>
             </label>
             <label class="textBox" :class="{ error: judgeFormRes[1] }">
@@ -160,7 +332,25 @@ const judgeForm = () => {
             </div>
           </form>
         </template>
-        <template v-if="lightType === 2"> </template>
+        <template v-if="lightType === 2">
+          <div class="lightShopBox">
+            <div class="model">
+              <img src="https://picsum.photos/300" alt="" />
+            </div>
+            <div class="infoBox">
+              <p class="title">
+                {{ shopData[previewDataIndex]?.title }}
+              </p>
+              <p class="text">
+                {{ shopData[previewDataIndex]?.text }}
+              </p>
+            </div>
+
+            <p class="remind">
+              *很抱歉，本產品尚未提供線上交易服務。請至實體據點選購。
+            </p>
+          </div>
+        </template>
       </template>
     </LightBox>
 
@@ -180,12 +370,14 @@ const judgeForm = () => {
       <div class="newsBox">
         <p class="boxTitle">最新消息</p>
         <ul class="newsList">
-          <template v-for="(data, id) in 10">
+          <template v-for="(data, id) in newsData" :key="id">
             <li>
-              <a href="javascript:;">
-                <p class="date">2025/01/10</p>
+              <a href="javascript:;" @click="lightBoxEvent(0, id)">
+                <p class="date">
+                  {{ data?.hap_datetime ? dateFormat(data.hap_datetime) : "" }}
+                </p>
                 <p class="title">
-                  標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題標題
+                  {{ data?.case_name }}
                 </p>
                 <div class="fishBox">
                   <UseSvg name="fish" />
@@ -195,6 +387,15 @@ const judgeForm = () => {
             </li>
           </template>
         </ul>
+        <p class="remind">
+          *資料來源：
+          <a
+            href="https://iocean.oca.gov.tw/OCA_DataHub/DataSetView.aspx?k=336F1B9D-1806-48ED-B36C-F63BB728F12D#"
+            target="_blank"
+            class="link"
+            >海洋保育資料倉儲系統</a
+          >
+        </p>
       </div>
     </section>
 
@@ -255,8 +456,12 @@ const judgeForm = () => {
                 <p class="title">{{ data.title }}</p>
                 <p class="text">{{ data.text }}</p>
                 <div class="btnBox">
-                  <a href="javascript:;" class="btn size-l">
-                    <p>查看更多</p>
+                  <a
+                    href="javascript:;"
+                    class="btn size-l"
+                    @click="lightBoxEvent(1, id)"
+                  >
+                    <p>報名活動</p>
 
                     <div class="fishBox">
                       <UseSvg name="fish" />
@@ -281,7 +486,7 @@ const judgeForm = () => {
         <ul>
           <template v-for="(data, id) in shopData" :key="id">
             <li>
-              <a href="javascript:;">
+              <a href="javascript:;" @click="lightBoxEvent(2, id)">
                 <div class="imgBox">
                   <img src="https://picsum.photos/300" alt="" />
                 </div>
@@ -296,7 +501,7 @@ const judgeForm = () => {
         <ul>
           <template v-for="(data, id) in shopData" :key="id">
             <li>
-              <a href="javascript:;">
+              <a href="javascript:;" @click="lightBoxEvent(2, id)">
                 <div class="imgBox">
                   <img src="https://picsum.photos/300" alt="" />
                 </div>

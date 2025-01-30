@@ -15,6 +15,11 @@ body {
   }
 }
 
+.link {
+  color: $mainLight;
+  text-decoration: underline;
+}
+
 .fishBox {
   display: flex;
   flex-shrink: 0;
@@ -65,19 +70,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: clamp(106.66px, 10.4166vw, 200px);
+    min-width: clamp(106.66px, 10.4166vw, 200px);
     aspect-ratio: 380/100;
     background: #fff;
     border-radius: clamp(19.2px, 1.875vw, 36px);
     position: relative;
     overflow: hidden;
     gap: 0 clamp(8.53px, 0.8333vw, 16px);
+    padding: 0 clamp(8.53px, 0.8333vw, 16px);
 
     @include rwd1024 {
-      width: 200px;
+      min-width: 200px;
       border-radius: 36px;
       gap: 0 16px;
       aspect-ratio: 380/ 80;
+      padding: 0 16px;
     }
 
     &:hover {
@@ -224,13 +231,17 @@ body {
     padding: clamp(38.4px, 3.75vw, 72px) clamp(12.8px, 1.25vw, 24px)
       clamp(17.06px, 1.6666vw, 32px);
 
-      @include rwd1024{
-        width: calc(100% - 32px);
-        min-width: none;
-        min-height: auto;
-        border-radius: 16px;
-        padding: 40px 16px 24px;
-      }
+    @include rwd1024 {
+      width: calc(100% - 32px);
+      min-width: none;
+      min-height: auto;
+      border-radius: 16px;
+      padding: 40px 16px 24px;
+    }
+
+    &:has(.lightNewsBox) {
+      min-width: auto;
+    }
 
     .close {
       display: inline-flex;
@@ -240,7 +251,7 @@ body {
       right: clamp(17.06px, 1.6666vw, 32px);
       top: clamp(17.06px, 1.6666vw, 32px);
 
-      @include rwd1024{
+      @include rwd1024 {
         width: 20px;
         top: 16px;
         right: 16px;
@@ -256,7 +267,7 @@ body {
         top: 50%;
         left: 0;
 
-        @include rwd1024{
+        @include rwd1024 {
           height: 2px;
         }
       }
@@ -270,12 +281,56 @@ body {
       }
     }
 
+    .lightNewsBox {
+      .title {
+        font-size: $f32;
+        text-align: center;
+        font-weight: 600;
+        color: $main;
+
+        @include rwd1024 {
+          font-size: 1.5rem;
+        }
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(4.26px, 0.4166vw, 8px) 0;
+        margin: clamp(21.33px, 2.0833vw, 40px) 0;
+
+        @include rwd1024 {
+          gap: 8px 0;
+          margin: 40px 0;
+        }
+
+        li {
+          font-size: $f20;
+          display: flex;
+
+          @include rwd1024 {
+            font-size: 1.25rem;
+          }
+
+          b {
+            font-weight: 500;
+            color: $main;
+            word-break: keep-all;
+          }
+        }
+      }
+
+      .btnBox {
+        justify-content: center;
+      }
+    }
+
     .lightForm {
       display: flex;
       flex-direction: column;
       gap: clamp(8.53px, 0.8333vw, 16px) 0;
 
-      @include rwd1024{
+      @include rwd1024 {
         gap: 20px 0;
       }
 
@@ -284,16 +339,17 @@ body {
         flex-direction: column;
         gap: clamp(4.26px, 0.4166vw, 8px) 0;
 
-        @include rwd1024{
+        @include rwd1024 {
           gap: 8px 0;
         }
 
-        &.error{
-          input,select{
-            border-color: #C82525;
+        &.error {
+          input,
+          select {
+            border-color: #c82525;
           }
 
-          b{
+          b {
             display: block;
           }
         }
@@ -303,22 +359,22 @@ body {
           font-size: $f20;
           font-weight: 500;
 
-          @include rwd1024{
+          @include rwd1024 {
             font-size: 1.125rem;
           }
 
-          &::after{
+          &::after {
             content: "*";
-            color: #C82525;
+            color: #c82525;
           }
         }
 
-        b{
-          color: #C82525;
+        b {
+          color: #c82525;
           font-size: $f16;
           display: none;
 
-          @include rwd1024{
+          @include rwd1024 {
             font-size: 0.875rem;
           }
         }
@@ -332,7 +388,7 @@ body {
           color: $main;
           font-size: $f18;
 
-          @include rwd1024{
+          @include rwd1024 {
             font-size: 1rem;
             border-radius: 8px;
             padding: 16px 8px;
@@ -342,14 +398,111 @@ body {
             outline: none;
           }
         }
+
+        .selectContent {
+          display: flex;
+          position: relative;
+
+          &::before {
+            content: "";
+            background: url(@/assets/images/icon/chevron-down-solid.svg);
+            position: absolute;
+            width: clamp(10.66px, 1.0416vw, 20px);
+            aspect-ratio: 1/1;
+            top: 50%;
+            right: clamp(8.53px, 0.8333vw, 16px);
+            transform: translateY(-50%);
+
+            @include rwd1024 {
+              width: 18px;
+              right: 16px;
+            }
+          }
+
+          select {
+            width: 100%;
+            padding-right: clamp(21.33px, 2.0833vw, 40px);
+
+            @include rwd1024 {
+              padding-right: 36px;
+            }
+          }
+        }
       }
 
       .btnBox {
         margin-top: clamp(21.33px, 2.0833vw, 40px);
         justify-content: center;
 
-        @include rwd1024{
+        @include rwd1024 {
           margin-top: 24px;
+        }
+      }
+    }
+
+    .lightShopBox {
+      display: grid;
+      grid-template-areas:
+        "a b"
+        "c c";
+      gap: clamp(17.06px, 1.6666vw, 32px) clamp(8.53px, 0.8333vw, 16px);
+
+      @include rwd1024 {
+        display: flex;
+        flex-direction: column;
+        gap: 16px 0;
+      }
+
+      .model {
+        width: 40vw;
+        grid-area: a;
+
+        @include rwd1024 {
+          width: 100%;
+          margin-top: 16px;
+        }
+
+        img {
+          width: 100%;
+          aspect-ratio: 1.5/1;
+        }
+      }
+
+      .infoBox {
+        display: flex;
+        flex-direction: column;
+        grid-area: b;
+        gap: clamp(8.53px, 0.8333vw, 16px) 0;
+
+        @include rwd1024 {
+          gap: 16px 0;
+        }
+
+        .title {
+          font-size: $f32;
+          font-weight: 500;
+
+          @include rwd1024 {
+            font-size: 1.5rem;
+          }
+        }
+
+        .text {
+          font-size: $f20;
+
+          @include rwd1024 {
+            font-size: 1.125rem;
+          }
+        }
+      }
+
+      .remind {
+        grid-area: c;
+        color: $main;
+        font-weight: 500;
+
+        @include rwd1024 {
+          margin-top: 16px;
         }
       }
     }
