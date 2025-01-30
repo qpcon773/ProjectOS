@@ -5,6 +5,9 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 
 import UseSvg from "@/components/UseSvg.vue";
+import LightBox from "@/components/LightBox.vue";
+
+const url = "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY="
 
 const polluteImg = ref([
   new URL("@/assets/images/index/pollute_01.jpg", import.meta.url).href,
@@ -13,8 +16,6 @@ const polluteImg = ref([
   new URL("@/assets/images/index/pollute_04.jpg", import.meta.url).href,
   new URL("@/assets/images/index/pollute_05.jpg", import.meta.url).href,
 ]);
-
-const swiperItem = ref();
 
 const actionData = ref([
   {
@@ -68,11 +69,22 @@ const shopData = ref([
   },
 ]);
 
+const swiperItem = ref();
+const swiperIndex = ref(0);
+const lightSwitch = ref(true);
+const lightType = ref(1);
+const formData = ref({
+  event: 999,
+  name: "",
+  mail: "",
+  phone: "",
+});
+const judgeFormRes = ref([false, false, false, false]);
+
 onMounted(() => {});
 
 const onSwiper = (swiper) => {
   swiperItem.value = swiper;
-  console.log(swiper);
 };
 
 const slideEvent = async (e) => {
@@ -83,11 +95,75 @@ const slideChangeEvent = async (e) => {
   swiperIndex.value = e.realIndex;
 };
 
-const swiperIndex = ref(0);
+const judgeForm = () => {
+  const isEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+  const keys = Object.keys(formData.value);
+
+  keys.forEach((e, id) => {
+    if (e === "event") {
+      judgeFormRes.value[id] = formData.value[e] === 999;
+    } else if (e === "mail") {
+      judgeFormRes.value[id] = !isEmail(formData.value[e]);
+    } else {
+      judgeFormRes.value[id] = formData.value[e] === "";
+    }
+  });
+};
 </script>
 
 <template>
   <main>
+    <LightBox :focus="lightSwitch" @closeEvent="(e) => (lightSwitch = false)">
+      <template #content>
+        <template v-if="lightType === 0">
+          <div class="lightNewsBox"></div>
+        </template>
+        <template v-if="lightType === 1">
+          <form class="lightForm">
+            <label class="selectBox" :class="{ error: judgeFormRes[0] }">
+              <span>報名活動</span>
+              <select v-model="formData.event">
+                <option :value="999">請選擇</option>
+                <template v-for="(data, id) in actionData">
+                  <option :value="id + 1">{{ data.title }}</option>
+                </template>
+              </select>
+              <b>請輸入正確資訊</b>
+            </label>
+            <label class="textBox" :class="{ error: judgeFormRes[1] }">
+              <span>姓名</span>
+              <input type="text" v-model="formData.name" />
+              <b>請輸入正確資訊</b>
+            </label>
+            <label class="textBox" :class="{ error: judgeFormRes[2] }">
+              <span>電子信箱</span>
+              <input type="text" v-model="formData.mail" />
+              <b>請輸入正確資訊</b>
+            </label>
+            <label class="textBox" :class="{ error: judgeFormRes[3] }">
+              <span>手機號碼</span>
+              <input type="text" v-model="formData.phone" />
+              <b>請輸入正確資訊</b>
+            </label>
+
+            <div class="btnBox">
+              <a href="javascript:;" class="btn deep" @click="judgeForm">
+                <p>送出</p>
+                <div class="fishBox">
+                  <UseSvg name="fish" />
+                  <UseSvg name="fish" />
+                </div>
+              </a>
+            </div>
+          </form>
+        </template>
+        <template v-if="lightType === 2"> </template>
+      </template>
+    </LightBox>
+
     <section class="newsArea mainBlock">
       <div class="imgBox item_01">
         <img src="@/assets/images/index/news_01.jpg" alt="" />

@@ -537,7 +537,7 @@ main {
         &[data-swiper-slide-index="0"] {
           .imgBox {
             .date {
-              color: pink;
+              background: pink;
             }
           }
 
@@ -553,7 +553,7 @@ main {
         &[data-swiper-slide-index="1"] {
           .imgBox {
             .date {
-              color: green;
+              background: green;
             }
           }
 
@@ -569,7 +569,7 @@ main {
         &[data-swiper-slide-index="2"] {
           .imgBox {
             .date {
-              color: orange;
+              background: orange;
             }
           }
 
@@ -585,7 +585,7 @@ main {
         &[data-swiper-slide-index="3"] {
           .imgBox {
             .date {
-              color: blue;
+              background: blue;
             }
           }
 
@@ -613,6 +613,7 @@ main {
       }
 
       .imgBox {
+        height: 100%;
         width: clamp(320px, 31.25vw, 600px);
         padding: clamp(4.26px, 0.4166vw, 8px);
         background: #fff;
@@ -629,7 +630,7 @@ main {
           position: absolute;
           top: clamp(-8.53px, -0.8333vw, -16px);
           left: clamp(12.8px, 1.25vw, 24px);
-          background: #fff;
+          color: #fff;
           font-size: $f32;
           padding: clamp(12.8px, 1.25vw, 24px);
           transform: rotate(-3deg);
