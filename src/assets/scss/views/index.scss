@@ -24,6 +24,67 @@ main {
     }
   }
 
+  .aboutArea {
+    padding: 0;
+    position: relative;
+
+    .aboutScrollBox {
+      display: flex;
+
+      .aboutBox {
+        height: 100vh;
+        flex-shrink: 0;
+        position: relative;
+
+        &:nth-of-type(1) {
+          width: 100vw;
+          background: #000;
+        }
+
+        &:nth-of-type(2) {
+          width: 200vw;
+          background: #fff;
+        }
+
+        &:nth-of-type(3) {
+          width: 200vw;
+          background: #000;
+        }
+      }
+    }
+
+    .aboutBgBox {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      opacity: 0.3;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100vw;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        clip-path: inset(0% 0% 0% 0%);
+
+        &.img_01 {
+          z-index: 12;
+        }
+
+        &.img_02 {
+          z-index: 11;
+        }
+
+        &.img_03 {
+          z-index: 10;
+        }
+      }
+    }
+  }
+
   .newsArea {
     position: relative;
     display: flex;
@@ -177,7 +238,7 @@ main {
         }
       }
 
-      .remind{
+      .remind {
         text-align: right;
       }
     }
@@ -817,6 +878,9 @@ main {
               overflow: hidden;
               position: relative;
               flex-shrink: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
               @include rwd1024 {
                 width: 100%;

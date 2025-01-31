@@ -1,11 +1,14 @@
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
+import { ref, onMounted } from "vue";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/all";
 
 import UseSvg from "@/components/UseSvg.vue";
 import LightBox from "@/components/LightBox.vue";
+import Model from "@/components/Model.vue";
 
 const url =
   "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY=";
@@ -161,25 +164,26 @@ const actionData = ref([
 ]);
 const shopData = ref([
   {
-    title: "漂流木桌子",
-    text: "大自然賦予的獨特紋理，每一張都是無法複製的藝術品。結合職人手工打造，展現原始樸實的魅力，為您的空間增添溫潤自然的氛圍。",
-    imgUrl: "",
+    title: "漂流木折凳",
+    text: "這款漂流木折凳兼具美感與實用性，簡約設計中蘊藏著大自然的溫度與手作工藝的細膩。折疊式結構方便收納與攜帶，適合多種場景使用，如戶外露營、陽台擺設或室內點綴。每一款皆由天然漂流木製成，保有獨特紋理與手感，讓空間展現樸實而富有靈魂的自然韻味。",
+    imgUrl: new URL("@/assets/images/index/shop_01.png", import.meta.url).href,
     id: 0,
   },
   {
-    title: "漂流木椅子",
-    text: "每張椅子都承載著海洋的故事，經過細緻打磨，保留原木質感與溫潤手感。獨特設計兼具美感與舒適度，讓您坐下的每一刻都與大自然連結。",
-    imgUrl: "",
+    title: "漂流木桌子",
+    text: "這款漂流木桌子以歲月雕琢的天然木材製成，每一道紋理都記錄著大自然的軌跡。經過細緻打磨與防護處理，保留原始質感的同時，提升耐用性與穩定性。無論是放置於客廳、餐廳或書房，都能為空間增添獨特的原始魅力與溫潤感，展現純粹的手工工藝與環保理念。",
+    imgUrl: new URL("@/assets/images/index/shop_02.png", import.meta.url).href,
     id: 1,
   },
   {
-    title: "漂流木套組",
-    text: "桌椅完美搭配，展現漂流木的天然韻味，為空間帶來純粹自然感。手工製作，每組獨一無二，讓您的居家或工作環境更具溫度與個性。",
-    imgUrl: "",
+    title: "漂流木椅子",
+    text: "承載著海浪與時光洗禮的漂流木椅子，每一張都是獨一無二的藝術品。手工精製的設計，融合天然紋理與舒適的座感，無論作為休閒椅或裝飾椅都別具特色。堅固耐用的結構讓其適合室內外擺放，為居家或商業空間帶來自然氣息與獨特個性，成為生活中最具溫度的存在。",
+    imgUrl: new URL("@/assets/images/index/shop_03.png", import.meta.url).href,
     id: 2,
   },
 ]);
 
+const aboutBlock = ref([]);
 const swiperItem = ref();
 const swiperIndex = ref(0); // 0 => 最新消息; 1 => 行動計畫; 2 => 捐愛海洋;
 const lightSwitch = ref(false);
@@ -192,8 +196,72 @@ const formData = ref({
   phone: "",
 });
 const judgeFormRes = ref([false, false, false, false]);
+const maxWidth = ref(0);
 
-onMounted(() => {});
+onMounted(() => {
+  setGsap();
+});
+
+const setGsap = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  aboutBlock.value = gsap.utils.toArray(".aboutArea .aboutBox");
+  window.addEventListener("resize", getMaxWidth);
+
+  getMaxWidth();
+
+  if (aboutBlock.value.length) {
+    const timeLineMain = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".aboutArea",
+        start: "top-=72",
+        pin: true,
+        scrub: 1,
+      },
+    });
+
+    const timeLineA = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".aboutArea",
+        start: 0,
+        // end: "top+=100vw",
+        scrub: 1,
+        markers: true,
+      },
+    });
+
+    const timeLineB = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".aboutArea",
+        start: "100vh",
+        end: "200vw",
+        scrub: 1,
+      },
+    });
+
+    timeLineMain.to(".aboutScrollBox", {
+      x: () => `-${maxWidth.value - window.innerWidth}`,
+      ease: "none",
+    });
+
+    timeLineA.to(".aboutBgBox .img_01", {
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "none",
+    });
+
+    timeLineB.to(".aboutBgBox .img_02", {
+      clipPath: "inset(0% 100% 0% 0%)",
+      ease: "none",
+    });
+  }
+};
+
+const getMaxWidth = () => {
+  maxWidth.value = 0;
+  aboutBlock.value.forEach((block) => {
+    maxWidth.value += block.offsetWidth;
+  });
+  console.log(maxWidth.value);
+};
 
 const onSwiper = (swiper) => {
   swiperItem.value = swiper;
@@ -212,19 +280,16 @@ const dateFormat = (e) => {
 };
 
 const lightBoxEvent = (situation, index) => {
-  console.log(situation, index);
   lightType.value = situation;
   previewDataIndex.value = index;
 
-  if (situation === 0) {
-  } else if (situation === 1) {
+  if (situation === 1) {
     formData.value = {
       event: index,
       name: "",
       mail: "",
       phone: "",
     };
-  } else if (situation === 2) {
   }
 
   lightSwitch.value = true;
@@ -335,7 +400,10 @@ const judgeForm = () => {
         <template v-if="lightType === 2">
           <div class="lightShopBox">
             <div class="model">
-              <img src="https://picsum.photos/300" alt="" />
+              <Model
+                :modelType="previewDataIndex"
+                :key="previewDataIndex"
+              ></Model>
             </div>
             <div class="infoBox">
               <p class="title">
@@ -353,6 +421,20 @@ const judgeForm = () => {
         </template>
       </template>
     </LightBox>
+
+    <section class="aboutArea mainBlock">
+      <div class="aboutScrollBox">
+        <div class="aboutBox"></div>
+        <div class="aboutBox"></div>
+        <div class="aboutBox"></div>
+      </div>
+
+      <div class="aboutBgBox">
+        <img src="@/assets/images/index/about_01.jpg" alt="" class="img_01" />
+        <img src="@/assets/images/index/about_02.jpg" alt="" class="img_02" />
+        <img src="@/assets/images/index/about_03.jpg" alt="" class="img_03" />
+      </div>
+    </section>
 
     <section class="newsArea mainBlock">
       <div class="imgBox item_01">
@@ -488,7 +570,7 @@ const judgeForm = () => {
             <li>
               <a href="javascript:;" @click="lightBoxEvent(2, id)">
                 <div class="imgBox">
-                  <img src="https://picsum.photos/300" alt="" />
+                  <img :src="data.imgUrl" alt="" />
                 </div>
                 <div class="infoBox">
                   <p>{{ data.title }}</p>
@@ -503,7 +585,7 @@ const judgeForm = () => {
             <li>
               <a href="javascript:;" @click="lightBoxEvent(2, id)">
                 <div class="imgBox">
-                  <img src="https://picsum.photos/300" alt="" />
+                  <img :src="data.imgUrl" alt="" />
                 </div>
                 <div class="infoBox">
                   <p>{{ data.title }}</p>
