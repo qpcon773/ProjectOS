@@ -5,13 +5,14 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import axios from "axios";
 
 import UseSvg from "@/components/UseSvg.vue";
 import LightBox from "@/components/LightBox.vue";
 import Model from "@/components/Model.vue";
 
 const url =
-  "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY=";
+  "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY=cfd5ac23-82c8-4dd0-a179-6895839bdea3";
 
 const newsData = ref([
   {
@@ -198,15 +199,20 @@ const formData = ref({
 const judgeFormRes = ref([false, false, false, false]);
 let maxWidth, ratio, navHeight;
 
-onMounted(() => {
-  console.log(window.innerWidth);
+onMounted(async () => {
   if (window.innerWidth >= 1024) {
     setGsap();
+  }
+
+  try {
+    const res = await axios.get(url);
+    console.log(res);
+  } catch (error) {
+    console.log(error);
   }
 });
 
 const setGsap = () => {
-  console.log(123);
   gsap.registerPlugin(ScrollTrigger);
   aboutBlock.value = gsap.utils.toArray(".aboutArea .aboutBox");
   window.addEventListener("resize", getMaxWidth);

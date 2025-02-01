@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import UseSvg from "@/components/UseSvg.vue";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/all";
 
 const navData = ref([
   {
@@ -24,12 +26,19 @@ const navData = ref([
     path: "",
   },
 ]);
+const rwdSwitch = ref(false);
 
-const rwdSwitch = ref(false)
+const navEvent = (id) => {
+  gsap.registerPlugin(ScrollToPlugin);
+  const targets = gsap.utils.toArray(".mainBlock");
+  const navHeight = document.querySelector("nav").offsetHeight;
+  gsap.to(window, { duration: 0.6, scrollTo: {y: id === 0 ? 0 : targets[id], offsetY: navHeight} });
+  rwdSwitch.value = false
+};
 </script>
 
 <template>
-  <nav :class="{focus: rwdSwitch}">
+  <nav :class="{ focus: rwdSwitch }">
     <a href="javascript:;" class="logo"
       ><img src="@/assets/images/logo.svg" alt=""
     /></a>
@@ -41,7 +50,7 @@ const rwdSwitch = ref(false)
     <ul class="navList">
       <template v-for="(data, id) in navData" :key="id">
         <li>
-          <a href="javascript:;">
+          <a href="javascript:;" @click="navEvent(id)">
             <UseSvg :name="`nav_0${id + 1}`" />
             {{ data.text }}
           </a>
