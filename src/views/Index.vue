@@ -196,13 +196,17 @@ const formData = ref({
   phone: "",
 });
 const judgeFormRes = ref([false, false, false, false]);
-const maxWidth = ref(0);
+let maxWidth, ratio, navHeight;
 
 onMounted(() => {
-  setGsap();
+  console.log(window.innerWidth);
+  if (window.innerWidth >= 1024) {
+    setGsap();
+  }
 });
 
 const setGsap = () => {
+  console.log(123);
   gsap.registerPlugin(ScrollTrigger);
   aboutBlock.value = gsap.utils.toArray(".aboutArea .aboutBox");
   window.addEventListener("resize", getMaxWidth);
@@ -213,7 +217,7 @@ const setGsap = () => {
     const timeLineMain = gsap.timeline({
       scrollTrigger: {
         trigger: ".aboutArea",
-        start: "top-=72",
+        start: `top-=${navHeight}`,
         pin: true,
         scrub: 1,
       },
@@ -223,23 +227,22 @@ const setGsap = () => {
       scrollTrigger: {
         trigger: ".aboutArea",
         start: 0,
-        // end: "top+=100vw",
+        end: ratio + navHeight,
         scrub: 1,
-        markers: true,
       },
     });
 
     const timeLineB = gsap.timeline({
       scrollTrigger: {
         trigger: ".aboutArea",
-        start: "100vh",
-        end: "200vw",
+        start: ratio * 2 + navHeight * 2,
+        end: ratio * 3 + navHeight * 3,
         scrub: 1,
       },
     });
 
     timeLineMain.to(".aboutScrollBox", {
-      x: () => `-${maxWidth.value - window.innerWidth}`,
+      x: () => `-${maxWidth - window.innerWidth}`,
       ease: "none",
     });
 
@@ -248,19 +251,25 @@ const setGsap = () => {
       ease: "none",
     });
 
-    timeLineB.to(".aboutBgBox .img_02", {
-      clipPath: "inset(0% 100% 0% 0%)",
-      ease: "none",
-    });
+    timeLineB.to(
+      ".aboutBgBox .img_02",
+      {
+        clipPath: "inset(0% 100% 0% 0%)",
+        ease: "none",
+      },
+      "<"
+    );
   }
 };
 
 const getMaxWidth = () => {
-  maxWidth.value = 0;
+  ratio = aboutBlock.value[0].offsetHeight / 5;
+  navHeight = document.querySelector("nav").offsetHeight;
+  maxWidth = 0;
+
   aboutBlock.value.forEach((block) => {
-    maxWidth.value += block.offsetWidth;
+    maxWidth += block.offsetWidth;
   });
-  console.log(maxWidth.value);
 };
 
 const onSwiper = (swiper) => {
@@ -424,9 +433,29 @@ const judgeForm = () => {
 
     <section class="aboutArea mainBlock">
       <div class="aboutScrollBox">
-        <div class="aboutBox"></div>
-        <div class="aboutBox"></div>
-        <div class="aboutBox"></div>
+        <div class="aboutBox">
+          <div class="textBlock">
+            <img src="@/assets/images/logo.svg" alt="" />
+            <p>守護海洋，共創未來</p>
+          </div>
+        </div>
+        <div class="aboutBox">
+          <div class="textBlock">
+            <p>
+              我們致力於保護海洋生態，減少污染，並推動可持續的海洋發展。
+              <br /><br />
+              我們相信，每一個行動都能為地球帶來改變，讓海洋恢復生機。
+            </p>
+          </div>
+        </div>
+        <div class="aboutBox">
+          <div class="textBlock">
+            <p>
+              海洋不僅是我們的資源，更是未來世代的希望。 <br /><br />
+              現在就是行動的時刻，與我們一起，讓海洋恢復蔚藍，讓地球充滿生機！
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="aboutBgBox">
