@@ -208,6 +208,7 @@ onMounted(async () => {
     const res = await axios.get(url);
     const apiData = [...res.data].slice(-10);
     newsData.value = apiData;
+    console.log(res)
   } catch (error) {
     console.log(error);
   }
