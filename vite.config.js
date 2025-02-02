@@ -6,10 +6,11 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     proxy: {
-      "/proxy": {
-        target: "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx",
+      '/api': {
+        target: 'https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/proxy/, '')
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false,
       },
     },
   },
