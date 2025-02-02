@@ -12,7 +12,7 @@ import LightBox from "@/components/LightBox.vue";
 import Model from "@/components/Model.vue";
 
 const url =
-  "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY=cfd5ac23-82c8-4dd0-a179-6895839bdea3";
+  "/api?id=5EC80F9B-418B-4D36-9099-36831AECEC45&API-KEY=cfd5ac23-82c8-4dd0-a179-6895839bdea3";
 
 const newsData = ref([
   {
@@ -206,7 +206,8 @@ onMounted(async () => {
 
   try {
     const res = await axios.get(url);
-    console.log(res);
+    const apiData = [...res.data].slice(-10);
+    newsData.value = apiData;
   } catch (error) {
     console.log(error);
   }

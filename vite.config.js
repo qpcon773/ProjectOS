@@ -1,9 +1,18 @@
 import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [vue()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
   base: "/",
   resolve: {
     alias: {
@@ -26,7 +35,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: '@use "@/assets/scss/_preset.scss" as *;', //@import規則將在3.0.0棄用，改用@use
-        api: 'modern-compiler', // or "modern" //避免一直跳警告
+        api: "modern-compiler", // or "modern" //避免一直跳警告
       },
     },
   },
@@ -36,4 +45,4 @@ export default defineConfig({
       use: ["file-loader"],
     });
   },
-})
+});
