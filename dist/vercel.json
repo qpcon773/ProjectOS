@@ -1,8 +1,7 @@
-{
-    "rewrites": [
-        {
-            "source": "/api/(.*)",
-            "destination": "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx"
-        }
-    ]
+{  
+  "rewrites": [
+       { "source": "/proxy/:match*",
+         "destination": "https://iocean.oca.gov.tw/oca_datahub/WebService/GetData.ashx/:match*"
+       } 
+ ]
 }
